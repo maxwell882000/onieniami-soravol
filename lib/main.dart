@@ -23,13 +23,14 @@ class MyApp extends StatelessWidget {
     return ChangeNotifierProvider(
       create: (context) => MainPorovider(),
       child: MaterialApp(
-          title: 'Flutter Demo',
-          theme: ThemeData(
-            primarySwatch: Colors.blue,
-          ),
-          home: MyHomePage(
-            title: "ASDASD",
-          )),
+        title: 'Flutter Demo',
+        theme: ThemeData(
+          primarySwatch: Colors.blue,
+        ),
+        home: MyHomePage(
+          title: "asdsad",
+        ),
+      ),
     );
   }
 }
@@ -53,7 +54,7 @@ class MyHomePage extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.center,
             children: <Widget>[
               const Text(
-                "ASDSDSD ",
+                "ASDSDSD",
               ),
               Consumer<MainPorovider>(builder: (context, provider, child) {
                 return Text(
@@ -65,7 +66,7 @@ class MyHomePage extends StatelessWidget {
                 return FloatingActionButton(
                   onPressed: () async {
                     provider.counter += 1;
-                    provider.socket.write('asdsad');
+                    provider.socket.write('bekzod-password');
                   },
                   tooltip: 'Increment',
                   child: const Icon(Icons.add),

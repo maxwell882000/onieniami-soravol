@@ -1,14 +1,25 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
+import 'package:test_window/Model/game.dart';
 import 'package:test_window/global_widgets/main_scaffold.dart';
 import 'package:test_window/global_widgets/text_field/abstracts/base_text_field.dart';
 import 'package:test_window/global_widgets/text_field/implementations/text-field-password.dart';
 import 'package:test_window/modules/buttons/implementations/black-button.dart';
 import 'package:test_window/modules/buttons/implementations/red-button.dart';
+import 'package:test_window/modules/game/widgets/initial_game.dart';
 
-
-class Registation extends StatelessWidget {
+class Registation extends StatefulWidget {
   const Registation({Key? key}) : super(key: key);
 
+  @override
+  State<Registation> createState() => _RegistationState();
+}
+
+class _RegistationState extends State<Registation> {
+  String? ss;
+  final _formKey = GlobalKey<FormState>();
+  String? dd;
   @override
   Widget build(BuildContext context) {
     return MainScaffold(
@@ -20,6 +31,7 @@ class Registation extends StatelessWidget {
             color: Colors.white,
           ),
           child: Form(
+            key: _formKey,
             child: Column(
               children: [
                 const Text(
@@ -38,7 +50,11 @@ class Registation extends StatelessWidget {
                       return "";
                     },
                     hintText: "Enter Login",
-                    onSaved: (text) {}),
+                    onSaved: (text) {
+                      setState(() {
+                        ss = text;
+                      });
+                    }),
                 const SizedBox(
                   width: 200.0,
                   height: 30.0,
@@ -48,7 +64,11 @@ class Registation extends StatelessWidget {
                       return "";
                     },
                     hintText: "Enter Password",
-                    onSaved: (text) {}),
+                    onSaved: (text) {
+                      setState(() {
+                        dd = text;
+                      });
+                    }),
                 const SizedBox(
                   width: 200.0,
                   height: 30.0,
@@ -56,7 +76,20 @@ class Registation extends StatelessWidget {
                 Row(
                   children: [
                     Flexible(
-                      child: RedButton(text: 'Sign Up', onPressed: () {}),
+                      child: RedButton(
+                          text: 'Sign Up',
+                          onPressed: () {
+                            final snackBar =
+                                SnackBar(content: Text('Sign up succefully'));
+                            ScaffoldMessenger.of(context)
+                                .showSnackBar(snackBar);
+                            final socket = Socket.connect('185.74.5.208', 9999);
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => InitialGame()),
+                            );
+                          }),
                     ),
                     const SizedBox(
                       width: 10.0,
@@ -65,7 +98,16 @@ class Registation extends StatelessWidget {
                     Flexible(
                       child: BlackButton(
                         text: 'Sign In',
-                        onPressed: () {},
+                        onPressed: () {
+                          final snackBar =
+                              SnackBar(content: Text('Sign in succefully'));
+                          ScaffoldMessenger.of(context).showSnackBar(snackBar);
+
+                          Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => InitialGame()));
+                        },
                       ),
                     ),
                   ],
