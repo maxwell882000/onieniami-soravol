@@ -6,7 +6,7 @@ import 'package:test_window/global_widgets/text_field/helper/sufix-container.dar
 class BaseTextField extends StatelessWidget {
   final String? hintText;
   final Function(String?)? onSaved;
-  final String Function(String?)? validatator;
+  final String? Function(String?)? validatator;
   final String? sufixText;
   final bool isPassword;
   final bool autofocus;

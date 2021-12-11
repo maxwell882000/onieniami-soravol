@@ -4,7 +4,7 @@ import 'package:test_window/global_widgets/text_field/helper/sufix-container.dar
 
 class TextFieldPassword extends StatefulWidget {
   final Function(String?)? onSaved;
-  final String Function(String?)? validatator;
+  final String? Function(String?)? validatator;
   final String? hintText;
   const TextFieldPassword(
       {Key? key, this.onSaved, this.validatator, this.hintText = "Password"})

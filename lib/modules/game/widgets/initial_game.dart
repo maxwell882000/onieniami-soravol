@@ -5,10 +5,19 @@ import 'package:test_window/global_widgets/text_field/implementations/text-field
 import 'package:test_window/modules/buttons/implementations/black-button.dart';
 import 'package:test_window/modules/buttons/implementations/red-button.dart';
 
-class InitialGame extends StatelessWidget {
+import 'game.dart';
 
-  const InitialGame({Key? key}):super(key: key);
-  
+class InitialGame extends StatefulWidget {
+  const InitialGame({Key? key}) : super(key: key);
+
+  @override
+  State<InitialGame> createState() => _InitialGameState();
+}
+
+class _InitialGameState extends State<InitialGame> {
+  String gameId = "";
+  final _formKey = GlobalKey<FormState>();
+  String password = "";
   @override
   Widget build(BuildContext context) {
     return MainScaffold(
@@ -20,6 +29,7 @@ class InitialGame extends StatelessWidget {
           color: Colors.white,
         ),
         child: Form(
+          key: _formKey,
           child: Column(
             children: [
               const Text(
@@ -35,20 +45,26 @@ class InitialGame extends StatelessWidget {
               ),
               BaseTextField(
                   validatator: (text) {
-                    return "";
+                    return null;
                   },
                   hintText: "Game ID",
-                  onSaved: (text) {}),
+                  onSaved: (text) {
+                    setState(() {
+                      gameId = text!;
+                    });
+                  }),
               const SizedBox(
                 width: 200.0,
                 height: 30.0,
               ),
               TextFieldPassword(
                   validatator: (text) {
-                    return "";
+                    return null;
                   },
                   hintText: "Enter Password",
-                  onSaved: (text) {}),
+                  onSaved: (text) {
+                    password = text!;
+                  }),
               const SizedBox(
                 width: 200.0,
                 height: 30.0,
@@ -56,7 +72,20 @@ class InitialGame extends StatelessWidget {
               Row(
                 children: [
                   Flexible(
-                    child: RedButton(text: 'Join the game', onPressed: () {}),
+                    child: RedButton(
+                        text: 'Join the game',
+                        onPressed: () {
+                          if (_formKey.currentState!.validate()) {
+                            _formKey.currentState!.save();
+                            print("${gameId};${password}");
+                            final snackBar =
+                                SnackBar(content: Text('Joined to the game'));
+                            ScaffoldMessenger.of(context)
+                                .showSnackBar(snackBar);
+                            Navigator.of(context).push(MaterialPageRoute(
+                                builder: (context) => Game()));
+                          }
+                        }),
                   ),
                   const SizedBox(
                     width: 10.0,
@@ -65,7 +94,17 @@ class InitialGame extends StatelessWidget {
                   Flexible(
                     child: BlackButton(
                       text: 'Create the game',
-                      onPressed: () {},
+                      onPressed: () {
+                        if (_formKey.currentState!.validate()) {
+                          _formKey.currentState!.save();
+                          print("${gameId};${password}");
+                          final snackBar =
+                              SnackBar(content: Text('Created to the game'));
+                          ScaffoldMessenger.of(context).showSnackBar(snackBar);
+                          Navigator.of(context).push(MaterialPageRoute(
+                              builder: (context) => Game()));
+                        }
+                      },
                     ),
                   ),
                 ],

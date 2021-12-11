@@ -1,6 +1,7 @@
 import 'dart:io';
 
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:test_window/Model/game.dart';
 import 'package:test_window/global_widgets/main_scaffold.dart';
 import 'package:test_window/global_widgets/text_field/abstracts/base_text_field.dart';
@@ -8,6 +9,7 @@ import 'package:test_window/global_widgets/text_field/implementations/text-field
 import 'package:test_window/modules/buttons/implementations/black-button.dart';
 import 'package:test_window/modules/buttons/implementations/red-button.dart';
 import 'package:test_window/modules/game/widgets/initial_game.dart';
+import 'package:test_window/modules/providers/main_provider.dart';
 
 class Registation extends StatefulWidget {
   const Registation({Key? key}) : super(key: key);
@@ -17,9 +19,11 @@ class Registation extends StatefulWidget {
 }
 
 class _RegistationState extends State<Registation> {
-  String? ss;
+  String name = "";
   final _formKey = GlobalKey<FormState>();
-  String? dd;
+
+  String password = "";
+
   @override
   Widget build(BuildContext context) {
     return MainScaffold(
@@ -47,12 +51,12 @@ class _RegistationState extends State<Registation> {
                 ),
                 BaseTextField(
                     validatator: (text) {
-                      return "";
+                      return null;
                     },
                     hintText: "Enter Login",
                     onSaved: (text) {
                       setState(() {
-                        ss = text;
+                        name = text!;
                       });
                     }),
                 const SizedBox(
@@ -61,12 +65,12 @@ class _RegistationState extends State<Registation> {
                 ),
                 TextFieldPassword(
                     validatator: (text) {
-                      return "";
+                      return null;
                     },
                     hintText: "Enter Password",
                     onSaved: (text) {
                       setState(() {
-                        dd = text;
+                        password = text!;
                       });
                     }),
                 const SizedBox(
@@ -79,16 +83,29 @@ class _RegistationState extends State<Registation> {
                       child: RedButton(
                           text: 'Sign Up',
                           onPressed: () {
-                            final snackBar =
-                                SnackBar(content: Text('Sign up succefully'));
-                            ScaffoldMessenger.of(context)
-                                .showSnackBar(snackBar);
-                            final socket = Socket.connect('185.74.5.208', 9999);
-                            Navigator.push(
+                            if (_formKey.currentState!.validate()) {
+                              _formKey.currentState!.save();
+                              print("${name};${password}");
+                              final snackBar =
+                                  SnackBar(content: Text('Sign up succefully'));
+                              ScaffoldMessenger.of(context)
+                                  .showSnackBar(snackBar);
+                              Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) => InitialGame()
+                                    ),
+                              );
+                              /*  final socket =
+                                Provider.of<MainPorovider>(context).socket;
+                            socket.write(); */
+                              /*     Navigator.push(
                               context,
                               MaterialPageRoute(
                                   builder: (context) => InitialGame()),
-                            );
+                            ); */
+
+                            }
                           }),
                     ),
                     const SizedBox(
@@ -99,14 +116,23 @@ class _RegistationState extends State<Registation> {
                       child: BlackButton(
                         text: 'Sign In',
                         onPressed: () {
-                          final snackBar =
-                              SnackBar(content: Text('Sign in succefully'));
-                          ScaffoldMessenger.of(context).showSnackBar(snackBar);
-
-                          Navigator.push(
+                          if (_formKey.currentState!.validate()) {
+                            _formKey.currentState!.save();
+                            print("${name};${password}");
+                            final snackBar =
+                                SnackBar(content: Text('Sign in succefully'));
+                            Navigator.push(
                               context,
                               MaterialPageRoute(
-                                  builder: (context) => InitialGame()));
+                                  builder: (context) => InitialGame()),
+                            );
+                            /*                     ScaffoldMessenger.of(context)
+                                .showSnackBar(snackBar);
+                             final socket =
+                                Provider.of<MainPorovider>(context).socket;
+                          /*   socket.write(); */
+                                */
+                          }
                         },
                       ),
                     ),

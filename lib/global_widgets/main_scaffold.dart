@@ -9,7 +9,7 @@ class MainScaffold extends StatelessWidget {
       appBar: AppBar(
         leading: IconButton(
           onPressed: () {
-            Navigator.pop(context);
+            Navigator.canPop(context);
           },
           icon: Icon(Icons.arrow_back),
         ),
