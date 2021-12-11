@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
 
 class BaseButton extends StatelessWidget {
   final String text;
@@ -24,7 +23,7 @@ class BaseButton extends StatelessWidget {
                   borderRadius: BorderRadius.circular(25))),
           onPressed: () => onPressed!(),
           child: Text(
-            text.toUpperCase().tr,
+            text.toUpperCase(),
             style: Theme.of(context).textTheme.button,
           )),
     );

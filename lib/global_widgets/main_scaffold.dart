@@ -6,6 +6,14 @@ class MainScaffold extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+    /*   appBar: AppBar(
+        leading: IconButton(
+          onPressed: () {
+
+          },
+          icon: Icon(Icons.menu),
+        ),
+      ), */
       body: Container(
         color: Colors.purple,
         alignment: Alignment.center,

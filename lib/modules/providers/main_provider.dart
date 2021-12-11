@@ -4,7 +4,7 @@ import 'dart:typed_data';
 import 'package:flutter/foundation.dart';
 import 'package:test_window/modules/providers/serialize.dart';
 
-class MainPorovider  extends Serializer with ChangeNotifier{
+class MainPorovider extends Serializer with ChangeNotifier {
   bool _isConnected = false;
   int _counter = 0;
 
@@ -34,10 +34,11 @@ class MainPorovider  extends Serializer with ChangeNotifier{
   MainPorovider() {
     initializeSocket();
   }
-  socketListen(Function listen) {
-    socket.listen(
+  socketListen() {
+    _socket.listen(
       (Uint8List data) {
         final serverResponse = String.fromCharCodes(data);
+        print(serverResponse);
       },
       onError: (error) {
         print(error);
@@ -51,7 +52,11 @@ class MainPorovider  extends Serializer with ChangeNotifier{
   }
 
   initializeSocket() async {
-/*     _socket = await Socket.connect('localhost', 9999); */
+    print("INITIALIZED");
+    _socket = await Socket.connect('127.0.0.1', 9999);
+    socketListen();
+  /*   socketListen(() {});
+    _socket.write('0;bekzod;password'); */  
     isConnected = true;
   }
 }
