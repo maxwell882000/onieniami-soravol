@@ -21,7 +21,7 @@ class Registation extends StatelessWidget {
             child: Column(
               children: [
                 Text(
-                  "Registration",
+                  "Register or Sign Up",
                   textAlign: TextAlign.center,
                   style: TextStyle(
                     fontSize: 20,
@@ -47,16 +47,30 @@ class Registation extends StatelessWidget {
                     },
                     hintText: "Enter Password",
                     onSaved: (text) {}),
+                const SizedBox(
+                  width: 200.0,
+                  height: 30.0,
+                ),
+                Row(
+                  children: [
+                    Flexible(
+                      child: RedButton(text: 'Sign Up', onPressed: () {}),
+                    ),
+                    const SizedBox(
+                  width: 200.0,
+                  height: 30.0,
+                ),
+                    Flexible(
+                      child: BlackButton(
+                        text: 'Sign In',
+                        onPressed: () {},
+                      ),
+                    ),
+                  ],
+                )
               ],
             ),
-            Row(
-              children: [
-              RedButton('Sign Up'),
-              BlackButton('Sign In'),
-            ],
-            )
-          )
-          ),
+          )),
     );
   }
 }

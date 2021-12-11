@@ -6,6 +6,6 @@ class BlackButton extends BaseButton {
       : super(
             key: key,
             text: text,
-            color: Color.fromRGBO(3, 1, 1, 1),
+            color: Color.fromRGBO(0, 102, 255, 1),
             onPressed: onPressed);
 }
