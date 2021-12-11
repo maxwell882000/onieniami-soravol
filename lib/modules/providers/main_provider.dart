@@ -2,8 +2,9 @@ import 'dart:io';
 import 'dart:typed_data';
 
 import 'package:flutter/foundation.dart';
+import 'package:test_window/modules/providers/serialize.dart';
 
-class MainPorovider with ChangeNotifier {
+class MainPorovider  extends Serializer with ChangeNotifier{
   bool _isConnected = false;
   int _counter = 0;
 

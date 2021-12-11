@@ -2,6 +2,7 @@ import 'dart:io';
 import 'dart:typed_data';
 
 import 'package:flutter/material.dart';
+
 import 'package:provider/provider.dart';
 import 'package:test_window/modules/auth/widgets/registration.dart';
 import 'package:test_window/modules/providers/main_provider.dart';
@@ -16,6 +17,7 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
+
     return ChangeNotifierProvider(
         create: (context) => MainPorovider(),
         child: MaterialApp(
@@ -25,6 +27,7 @@ class MyApp extends StatelessWidget {
           ),
           home: Registation(),
         ));
+
   }
 }
 
