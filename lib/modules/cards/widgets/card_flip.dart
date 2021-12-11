@@ -1,6 +1,5 @@
-import 'dart:ui';
+/* import 'dart:ui';
 
-import 'package:flip_card/flip_card.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/painting.dart';
 
@@ -48,19 +47,7 @@ class _FlipAnimationDemoState extends State<FlipAnimationDemo> {
                     front: Stack(
                       alignment: Alignment.center,
                       children: [
-                        Container(
-                          decoration: BoxDecoration(
-                            borderRadius: BorderRadius.all(Radius.circular(10)),
-                            color: Colors.orange.shade200,
-                          ),
-                        ),
-                        Text(
-                          'Front',
-                          style: TextStyle(
-                              color: Colors.white,
-                              fontSize: 28,
-                              fontWeight: FontWeight.w600),
-                        ),
+                      
                       ],
                     ),
                     back: Stack(
@@ -91,3 +78,4 @@ class _FlipAnimationDemoState extends State<FlipAnimationDemo> {
     );
   }
 }
+ */

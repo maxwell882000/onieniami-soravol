@@ -5,7 +5,10 @@ import 'package:flutter/material.dart';
 
 import 'package:provider/provider.dart';
 import 'package:test_window/modules/auth/widgets/registration.dart';
+import 'package:test_window/modules/game/widgets/initial_game.dart';
 import 'package:test_window/modules/providers/main_provider.dart';
+
+import 'modules/game/widgets/game.dart';
 
 void main() {
   runApp(const MyApp());
@@ -17,17 +20,17 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-
     return ChangeNotifierProvider(
-        create: (context) => MainPorovider(),
-        child: MaterialApp(
+      create: (context) => MainPorovider(),
+      child: MaterialApp(
           title: 'Flutter Demo',
           theme: ThemeData(
             primarySwatch: Colors.blue,
           ),
-          home: Registation(),
-        ));
-
+          home: MyHomePage(
+            title: "ASDASD",
+          )),
+    );
   }
 }
 
@@ -60,8 +63,9 @@ class MyHomePage extends StatelessWidget {
               }),
               Consumer<MainPorovider>(builder: (context, provider, child) {
                 return FloatingActionButton(
-                  onPressed: () {
+                  onPressed: () async {
                     provider.counter += 1;
+                    provider.socket.write('asdsad');
                   },
                   tooltip: 'Increment',
                   child: const Icon(Icons.add),

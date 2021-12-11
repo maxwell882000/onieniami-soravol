@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:test_window/modules/buttons/abstracts/base_button.dart';
 
 class RedButton extends BaseButton {
-  RedButton({Key? key, String text = "", Function? onPressed})
+  RedButton({Key? key, String text = "", Function ?onPressed})
       : super(
             key: key,
             text: text,

@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 
-
 class BaseButton extends StatelessWidget {
   final String text;
   final Color color;

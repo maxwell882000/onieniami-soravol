@@ -1,3 +1,4 @@
+// ignore: file_names
 import 'package:flutter/material.dart';
 import 'package:test_window/modules/buttons/abstracts/base_button.dart';
 
@@ -6,6 +7,6 @@ class BlackButton extends BaseButton {
       : super(
             key: key,
             text: text,
-            color: Color.fromRGBO(0, 102, 255, 1),
+            color: Color.fromRGBO(3, 1, 1, 1),
             onPressed: onPressed);
 }

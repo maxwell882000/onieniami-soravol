@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:test_window/global_widgets/main_scaffold.dart';
 import 'package:test_window/global_widgets/text_field/abstracts/base_text_field.dart';
+import 'package:test_window/global_widgets/text_field/implementations/text-field-password.dart';
 import 'package:test_window/modules/buttons/implementations/black-button.dart';
 import 'package:test_window/modules/buttons/implementations/red-button.dart';
+
 
 class Registation extends StatelessWidget {
   const Registation({Key? key}) : super(key: key);
@@ -20,7 +22,7 @@ class Registation extends StatelessWidget {
           child: Form(
             child: Column(
               children: [
-                Text(
+                const Text(
                   "Register or Sign Up",
                   textAlign: TextAlign.center,
                   style: TextStyle(
@@ -41,7 +43,7 @@ class Registation extends StatelessWidget {
                   width: 200.0,
                   height: 30.0,
                 ),
-                BaseTextField(
+                TextFieldPassword(
                     validatator: (text) {
                       return "";
                     },
@@ -57,9 +59,9 @@ class Registation extends StatelessWidget {
                       child: RedButton(text: 'Sign Up', onPressed: () {}),
                     ),
                     const SizedBox(
-                  width: 200.0,
-                  height: 30.0,
-                ),
+                      width: 10.0,
+                      height: 30.0,
+                    ),
                     Flexible(
                       child: BlackButton(
                         text: 'Sign In',

@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 
-
 class SufixContainer extends StatelessWidget {
   final String text;
   final Function? onClick;
@@ -12,13 +11,13 @@ class SufixContainer extends StatelessWidget {
     return GestureDetector(
       onTap: () => onClick!(),
       child: Container(
+          height: 20,
           decoration: BoxDecoration(
               color: Colors.grey.shade100,
               borderRadius: BorderRadius.circular(5)),
           padding: EdgeInsets.all(2),
           child: Text(
             text,
-            style: Theme.of(context).textTheme.headline6,
           )),
     );
   }
