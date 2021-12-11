@@ -80,33 +80,43 @@ class _RegistationState extends State<Registation> {
                 Row(
                   children: [
                     Flexible(
-                      child: RedButton(
-                          text: 'Sign Up',
-                          onPressed: () {
-                            if (_formKey.currentState!.validate()) {
-                              _formKey.currentState!.save();
-                              print("${name};${password}");
-                              final snackBar =
-                                  SnackBar(content: Text('Sign up succefully'));
-                              ScaffoldMessenger.of(context)
-                                  .showSnackBar(snackBar);
-                              Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                    builder: (context) => InitialGame()
-                                    ),
-                              );
-                              /*  final socket =
-                                Provider.of<MainPorovider>(context).socket;
-                            socket.write(); */
-                              /*     Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                  builder: (context) => InitialGame()),
-                            ); */
+                      child: Consumer<MainPorovider>(
+                          builder: (context, provider, child) {
+                        return RedButton(
+                            text: 'Sign In',
+                            onPressed: () async {
+                              if (_formKey.currentState!.validate()) {
+                                _formKey.currentState!.save();
 
-                            }
-                          }),
+                                /*    Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                      builder: (context) => InitialGame()),
+                                ); */
+                                print('ASdsad');
+                                String request = "2;${name};${password}";
+                                Socket socket =
+                                    await Socket.connect('127.0.0.1', 9999);
+                                socket.listen((event) {
+                                  final serverResponse =
+                                      String.fromCharCodes(event);
+                                  final snackBar =
+                                      SnackBar(content: Text(serverResponse));
+                                  ScaffoldMessenger.of(context)
+                                      .showSnackBar(snackBar);
+                                });
+                                socket.write("2;asdasd;asfsafsa");
+                                /*   provider.user.nickname = name;
+                                provider.user.password = password; */
+
+                                /*     Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                      builder: (context) => InitialGame()),
+                                ); */
+                              }
+                            });
+                      }),
                     ),
                     const SizedBox(
                       width: 10.0,
@@ -114,24 +124,23 @@ class _RegistationState extends State<Registation> {
                     ),
                     Flexible(
                       child: BlackButton(
-                        text: 'Sign In',
+                        text: 'Sign Up',
                         onPressed: () {
                           if (_formKey.currentState!.validate()) {
                             _formKey.currentState!.save();
-                            print("${name};${password}");
+
                             final snackBar =
                                 SnackBar(content: Text('Sign in succefully'));
+
+                            String request = "1;${name};${password}";
+
                             Navigator.push(
                               context,
                               MaterialPageRoute(
                                   builder: (context) => InitialGame()),
                             );
-                            /*                     ScaffoldMessenger.of(context)
+                            ScaffoldMessenger.of(context)
                                 .showSnackBar(snackBar);
-                             final socket =
-                                Provider.of<MainPorovider>(context).socket;
-                          /*   socket.write(); */
-                                */
                           }
                         },
                       ),

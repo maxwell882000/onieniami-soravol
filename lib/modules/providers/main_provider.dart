@@ -39,7 +39,12 @@ class MainPorovider extends Serializer with ChangeNotifier {
     _socket.listen(
       (Uint8List data) {
         final serverResponse = String.fromCharCodes(data);
-        print(serverResponse);
+        final List server = serverResponse.split(';');
+        print(server);
+        if (server[0] == '1' || server[0] == "2") {
+          user.userId = server[1];
+          notifyListeners();
+        }
       },
       onError: (error) {
         print(error);
@@ -54,8 +59,8 @@ class MainPorovider extends Serializer with ChangeNotifier {
 
   initializeSocket() async {
     print("INITIALIZED");
-    _socket = await Socket.connect('127.0.0.1', 9999);
-    socketListen();
+    /*    _socket = await Socket.connect('127.0.0.1', 9999); */
+/*     socketListen(); */
     /*   socketListen(() {});
     _socket.write('0;bekzod;password'); */
     isConnected = true;

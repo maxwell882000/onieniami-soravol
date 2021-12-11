@@ -64,7 +64,7 @@ class MyHomePage extends StatelessWidget {
                 return FloatingActionButton(
                   onPressed: () async {
                     provider.counter += 1;
-                    provider.socket.write('bekzod-password');
+                    provider.socket.write('123;bekzod-password');
                   },
                   tooltip: 'Increment',
                   child: const Icon(Icons.add),
